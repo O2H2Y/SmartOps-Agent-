@@ -1,0 +1,37 @@
+{
+  "corpus_files": 5,
+  "corpus_chars": 17019,
+  "corpus_bytes": 30829,
+  "corpus_h2_sections": 53,
+  "queries": 80,
+  "positive_queries": 60,
+  "negative_queries": 20,
+  "relevant_links": 68,
+  "category_relevant_links": {
+    "cpu": 12,
+    "disk": 13,
+    "memory": 12,
+    "service_unavailable": 15,
+    "slow_response": 16
+  },
+  "covered_sections": 26,
+  "covered_subsections": 13,
+  "grade_counts": {
+    "1": 5,
+    "2": 63
+  },
+  "negative_type_counts": {
+    "in_domain_unanswerable": 10,
+    "out_of_domain": 10
+  },
+  "categories": {
+    "cpu": 12,
+    "disk": 12,
+    "memory": 12,
+    "negative": 20,
+    "service_unavailable": 12,
+    "slow_response": 12
+  },
+  "intent_types": 80,
+  "covered_sources": 5
+}

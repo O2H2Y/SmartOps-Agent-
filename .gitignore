@@ -76,6 +76,9 @@ Thumbs.db
 .coverage
 htmlcov/
 
+# RAG evaluation outputs
+eval/results/
+
 # MyPy
 .mypy_cache/
 .dmypy.json
