@@ -1,0 +1,291 @@
+{
+  "run_id": "retrieval_20261019_213543",
+  "generated_at": "2026-10-19T21:38:29+08:00",
+  "dataset_stats": {
+    "corpus_files": 5,
+    "corpus_chars": 17019,
+    "corpus_bytes": 30829,
+    "corpus_h2_sections": 53,
+    "queries": 80,
+    "positive_queries": 60,
+    "negative_queries": 20,
+    "relevant_links": 68,
+    "category_relevant_links": {
+      "cpu": 12,
+      "disk": 13,
+      "memory": 12,
+      "service_unavailable": 15,
+      "slow_response": 16
+    },
+    "covered_sections": 26,
+    "covered_subsections": 13,
+    "grade_counts": {
+      "1": 5,
+      "2": 63
+    },
+    "negative_type_counts": {
+      "in_domain_unanswerable": 10,
+      "out_of_domain": 10
+    },
+    "categories": {
+      "cpu": 12,
+      "disk": 12,
+      "memory": 12,
+      "negative": 20,
+      "service_unavailable": 12,
+      "slow_response": 12
+    },
+    "intent_types": 80,
+    "covered_sources": 5
+  },
+  "index": {
+    "entities": 21,
+    "embedding_model": "text-embedding-v4",
+    "metric_type": "L2",
+    "index_type": "IVF_FLAT",
+    "nlist": 128,
+    "rag_top_k": 3
+  },
+  "validation": {
+    "processed_queries": 80,
+    "production_top3_match": 80,
+    "production_top3_match_rate": 1.0,
+    "missing_queries": 0,
+    "top1_match_rate_at_3": 0.7166666666666667
+  },
+  "metrics_at_3": {
+    "positive_queries": 60,
+    "negative_queries": 20,
+    "doc_recall": 1.0,
+    "chunk_recall": 0.9666666666666667,
+    "hit_rate": 0.9666666666666667,
+    "mrr": 0.8333333333333334,
+    "ndcg": 0.8654243958536167,
+    "positive_empty_result_rate": 0.0,
+    "no_answer_return_rate": 1.0,
+    "k": 3,
+    "evaluated_queries": 80,
+    "missing_result_queries": []
+  },
+  "metrics_at_10": {
+    "positive_queries": 60,
+    "negative_queries": 20,
+    "doc_recall": 1.0,
+    "chunk_recall": 0.9833333333333333,
+    "hit_rate": 0.9833333333333333,
+    "mrr": 0.8366666666666667,
+    "ndcg": 0.8718719426408591,
+    "positive_empty_result_rate": 0.0,
+    "no_answer_return_rate": 1.0,
+    "k": 10,
+    "evaluated_queries": 80,
+    "missing_result_queries": []
+  },
+  "confidence_95_at_3": {
+    "doc_recall": {
+      "mean": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    },
+    "recall": {
+      "mean": 0.9666666666666667,
+      "ci95": [
+        0.9166666666666666,
+        1.0
+      ]
+    },
+    "hit_rate": {
+      "mean": 0.9666666666666667,
+      "ci95": [
+        0.9166666666666666,
+        1.0
+      ]
+    },
+    "mrr": {
+      "mean": 0.8333333333333334,
+      "ci95": [
+        0.7611111111111111,
+        0.9
+      ]
+    },
+    "ndcg": {
+      "mean": 0.8654243958536167,
+      "ci95": [
+        0.8046991652196115,
+        0.9207970066294493
+      ]
+    },
+    "no_answer_return_rate": {
+      "mean": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ]
+    }
+  },
+  "by_category_at_3": {
+    "cpu": {
+      "positive_queries": 12,
+      "negative_queries": 0,
+      "doc_recall": 1.0,
+      "chunk_recall": 1.0,
+      "hit_rate": 1.0,
+      "mrr": 0.875,
+      "ndcg": 0.9077324383928643,
+      "positive_empty_result_rate": 0.0,
+      "no_answer_return_rate": null
+    },
+    "disk": {
+      "positive_queries": 12,
+      "negative_queries": 0,
+      "doc_recall": 1.0,
+      "chunk_recall": 1.0,
+      "hit_rate": 1.0,
+      "mrr": 0.8194444444444445,
+      "ndcg": 0.8684051093287773,
+      "positive_empty_result_rate": 0.0,
+      "no_answer_return_rate": null
+    },
+    "memory": {
+      "positive_queries": 12,
+      "negative_queries": 0,
+      "doc_recall": 1.0,
+      "chunk_recall": 0.9166666666666666,
+      "hit_rate": 0.9166666666666666,
+      "mrr": 0.8333333333333334,
+      "ndcg": 0.8551549589285763,
+      "positive_empty_result_rate": 0.0,
+      "no_answer_return_rate": null
+    },
+    "negative": {
+      "positive_queries": 0,
+      "negative_queries": 20,
+      "doc_recall": null,
+      "chunk_recall": null,
+      "hit_rate": null,
+      "mrr": null,
+      "ndcg": null,
+      "positive_empty_result_rate": null,
+      "no_answer_return_rate": 1.0
+    },
+    "service_unavailable": {
+      "positive_queries": 12,
+      "negative_queries": 0,
+      "doc_recall": 1.0,
+      "chunk_recall": 1.0,
+      "hit_rate": 1.0,
+      "mrr": 0.8194444444444445,
+      "ndcg": 0.8660657717261976,
+      "positive_empty_result_rate": 0.0,
+      "no_answer_return_rate": null
+    },
+    "slow_response": {
+      "positive_queries": 12,
+      "negative_queries": 0,
+      "doc_recall": 1.0,
+      "chunk_recall": 0.9166666666666666,
+      "hit_rate": 0.9166666666666666,
+      "mrr": 0.8194444444444445,
+      "ndcg": 0.8297637008916681,
+      "positive_empty_result_rate": 0.0,
+      "no_answer_return_rate": null
+    }
+  },
+  "failures": [
+    {
+      "qid": "memory-012",
+      "query": "OOM 了怎么处理？",
+      "gold": [
+        {
+          "source": "aiops-docs/memory_high_usage.md",
+          "h2": "紧急处理措施",
+          "grade": 1,
+          "evidence_quote": "**重启高内存实例**: 快速释放内存，恢复服务"
+        }
+      ],
+      "recall_at_3": 0.0,
+      "recall_at_10": 1.0,
+      "first_relevant_rank_at_3": null,
+      "first_relevant_rank_at_10": 5,
+      "full_corpus_gold_rank": null,
+      "top3": [
+        {
+          "rank": 1,
+          "source": "disk_high_usage.md",
+          "h2": "紧急处理措施",
+          "distance": 1.0217483043670654
+        },
+        {
+          "rank": 2,
+          "source": "memory_high_usage.md",
+          "h2": "排查步骤",
+          "distance": 1.0231236219406128
+        },
+        {
+          "rank": 3,
+          "source": "service_unavailable.md",
+          "h2": "常见原因分析",
+          "distance": 1.0291606187820435
+        }
+      ]
+    },
+    {
+      "qid": "slow-011",
+      "query": "接口怎么突然这么卡？",
+      "gold": [
+        {
+          "source": "aiops-docs/slow_response.md",
+          "h2": "问题描述",
+          "grade": 1,
+          "evidence_quote": "当服务的响应时间持续超过阈值时"
+        }
+      ],
+      "recall_at_3": 0.0,
+      "recall_at_10": 0.0,
+      "first_relevant_rank_at_3": null,
+      "first_relevant_rank_at_10": null,
+      "full_corpus_gold_rank": 17,
+      "top3": [
+        {
+          "rank": 1,
+          "source": "slow_response.md",
+          "h2": "常见原因分析",
+          "distance": 0.9956910610198975
+        },
+        {
+          "rank": 2,
+          "source": "slow_response.md",
+          "h2": "紧急处理措施",
+          "distance": 1.0958738327026367
+        },
+        {
+          "rank": 3,
+          "source": "memory_high_usage.md",
+          "h2": "常见原因分析",
+          "distance": 1.105514645576477
+        }
+      ]
+    }
+  ],
+  "negative_analysis": {
+    "queries": 20,
+    "queries_returning_documents": 20,
+    "no_answer_return_rate": 1.0,
+    "note": "?????????????????????????? TopK ???"
+  },
+  "ranking_distribution_at_3": {
+    "1": 43,
+    "2": 12,
+    "3": 3,
+    "miss": 2
+  },
+  "ranking_distribution_at_10": {
+    "1": 43,
+    "2": 12,
+    "3": 3,
+    "5": 1,
+    "miss": 1
+  }
+}

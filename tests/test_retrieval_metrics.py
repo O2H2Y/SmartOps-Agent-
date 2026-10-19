@@ -108,6 +108,21 @@ class RetrievalMetricsTest(unittest.TestCase):
         self.assertEqual(result["no_answer_return"], 1.0)
         self.assertEqual(result["empty_result"], 0.0)
 
+    def test_document_recall_does_not_require_evidence_match(self):
+        result = score_query(
+            self.row,
+            [
+                {
+                    "rank": 1,
+                    "content": "same source but different section",
+                    "metadata": {"_source": "aiops-docs/cpu_high_usage.md"},
+                }
+            ],
+            k=3,
+        )
+        self.assertEqual(result["doc_recall"], 1.0)
+        self.assertEqual(result["recall"], 0.0)
+
     def test_aggregate_ignores_missing_negative_metrics(self):
         positive = score_query(self.row, [], k=3)
         negative = score_query({"qid": "n1", "category": "negative", "relevant": []}, [], k=3)

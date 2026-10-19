@@ -119,6 +119,12 @@ def score_query(
     doc_hit = False
 
     for rank, candidate in enumerate(top_k, start=1):
+        candidate_source_value = candidate_source(candidate)
+        if any(
+            source_matches(candidate_source_value, str(unit.get("source") or ""))
+            for unit in units
+        ):
+            doc_hit = True
         matched = matched_unit_indexes(candidate, units)
         new_matches = [index for index in matched if index not in hit_indexes]
         if new_matches:
@@ -128,7 +134,6 @@ def score_query(
             candidate_grades.append(
                 max(int(units[i].get("grade", 1)) for i in new_matches)
             )
-            doc_hit = True
         else:
             candidate_grades.append(0)
 

@@ -1,0 +1,81 @@
+﻿qid,category,query,negative,recall_at_3,mrr_at_3,ndcg_at_3,first_relevant_rank_at_3,recall_at_10,first_relevant_rank_at_10,no_answer_return_at_3
+cpu-high-001,cpu,监控提示HighCPUUsage严重告警时，说明CPU出现了什么持续状态？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-002,cpu,CPU使用率满足什么条件会触发严重告警？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-003,cpu,收到CPU告警后，先获取当前时间是为了确定什么？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-004,cpu,排查CPU高占用时，系统指标日志应查看哪个主题和异常筛选条件？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-005,cpu,分析CPU消耗进程时，需要关注哪些进程信息？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-006,cpu,单个进程几乎占满CPU且日志反复出现错误堆栈，通常是什么原因？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-007,cpu,多进程CPU一起升高、请求量猛增但响应虽慢却无明显错误，通常是什么原因？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-008,cpu,CPU按固定周期升高且日志能看到任务执行记录，应该怀疑什么？,False,1.0,1.0,1.0,1,1.0,1,
+cpu-high-009,cpu,确认是流量问题后，怎样先扩大处理能力？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+cpu-high-010,cpu,确认是代码引起的问题后，在后续处置中应准备什么？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+cpu-high-011,cpu,CPU突然飙高，第一步先记录什么？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+cpu-high-012,cpu,单实例CPU一直降不下来，先怎么处理？,False,1.0,1.0,1.0,1,1.0,1,
+disk-trigger-01,disk,HighDiskUsage 告警里，警告和严重分别是什么范围？,False,1.0,1.0,1.0,1,1.0,1,
+disk-trigger-02,disk,磁盘占用要持续多久超过阈值才会报 HighDiskUsage？,False,1.0,1.0,1.0,1,1.0,1,
+disk-diag-01,disk,排查磁盘告警时，为什么第一步要记录当前时间？,False,1.0,1.0,1.0,1,1.0,1,
+disk-diag-02,disk,广州地域最近30分钟的系统磁盘指标，该查哪个日志主题和条件？,False,1.0,1.0,1.0,1,1.0,1,
+disk-diag-03,disk,应用日志里出现写不进去的报错，应该搜索哪些关键词？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+disk-cause-01,disk,应用日志一直增长且没做轮转，通常是哪类原因？,False,1.0,1.0,1.0,1,1.0,1,
+disk-cause-02,disk,上传临时目录被写满而且旧文件很多，应该先怀疑什么？,False,1.0,1.0,1.0,1,1.0,1,
+disk-cause-03,disk,数据库数据持续增长又没有归档策略，要判断成哪种占盘原因？,False,1.0,1.0,1.0,1,1.0,1,
+disk-action-01,disk,要找出根目录下占用最大的10个文件，用哪条命令？,False,1.0,0.3333333333333333,0.5,3,1.0,3,
+disk-action-02,disk,确认是日志占盘后，怎样清空日志内容并保留文件？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+disk-colloquial-01,disk,磁盘突然满了，先清理什么？,False,1.0,1.0,1.0,1,1.0,1,
+disk-colloquial-02,disk,日志把盘写满了咋整？,False,1.0,0.5,0.6590018048024133,2,1.0,2,
+memory-001,memory,哪个告警专门用于提示内存持续偏高？,False,1.0,1.0,1.0,1,1.0,1,
+memory-002,memory,内存持续偏高的告警需要满足什么条件才会触发？,False,1.0,1.0,1.0,1,1.0,1,
+memory-003,memory,排查内存告警时，为什么要先确认告警发生的时段？,False,1.0,1.0,1.0,1,1.0,1,
+memory-004,memory,先看哪一类系统监控日志，才能找出内存指标和异常终止记录？,False,1.0,1.0,1.0,1,1.0,1,
+memory-005,memory,应用日志里出现哪些关键字时，说明JVM可能已经内存异常？,False,1.0,1.0,1.0,1,1.0,1,
+memory-006,memory,服务运行越久占用越高，回收后也不见下降，通常要考虑什么？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+memory-007,memory,内存曲线和请求量一起猛涨，但大部分对象还能被回收，应该往哪方面查？,False,1.0,1.0,1.0,1,1.0,1,
+memory-008,memory,上传导入一结束内存就回落，这种突增更可能和什么场景有关？,False,1.0,1.0,1.0,1,1.0,1,
+memory-009,memory,内存告警很急时，怎样尽快把服务恢复并释放压力？,False,1.0,1.0,1.0,1,1.0,1,
+memory-010,memory,查看JVM堆内存用了多少，该执行哪条命令？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+memory-011,memory,内存老降不下来，会不会是泄漏？,False,1.0,1.0,1.0,1,1.0,1,
+memory-012,memory,OOM 了怎么处理？,False,0.0,0.0,0.0,,1.0,5,
+service-001,service_unavailable,哪些情况会触发 ServiceUnavailable 告警？,False,1.0,1.0,1.0,1,1.0,1,
+service-002,service_unavailable,监控里健康检查失败和所有实例下线，分别对应哪些相关告警名？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+service-003,service_unavailable,怀疑服务异常时，最近15分钟的哪些错误日志值得先查？,False,1.0,1.0,1.0,1,1.0,1,
+service-004,service_unavailable,怎样查服务是否发生过重启、崩溃或被系统杀掉？,False,1.0,1.0,1.0,1,1.0,1,
+service-005,service_unavailable,应用日志里出现依赖连接问题时，应该围绕哪些下游组件排查？,False,1.0,1.0,1.0,1,1.0,1,
+service-006,service_unavailable,所有实例都无响应、启动日志报OOM，优先考虑哪类原因？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+service-007,service_unavailable,日志同时出现连接被拒和连接数过多，对应哪类数据库故障特征？,False,1.0,1.0,1.0,1,1.0,1,
+service-008,service_unavailable,Redis、MQ不可用导致调用超时和级联故障，属于哪类原因？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+service-009,service_unavailable,新版本发布后所有实例都起不来，无法马上修复时先做什么？,False,1.0,1.0,1.0,1,1.0,1,
+service-010,service_unavailable,服务恢复后要确认错误率降到什么程度，并持续观察多久？,False,1.0,1.0,1.0,1,1.0,1,
+service-011,service_unavailable,服务好像挂了，先干啥？,False,1.0,0.3333333333333333,0.5,3,1.0,3,
+service-012,service_unavailable,挂了半小时了，该往哪级升级？,False,1.0,1.0,1.0,1,1.0,1,
+slow-001,slow_response,什么样的响应时间表现会触发这个告警？,False,1.0,1.0,1.0,1,1.0,1,
+slow-002,slow_response,哪个告警代表服务变慢，它一般会带来哪些后果？,False,1.0,1.0,0.8262346571285599,1,1.0,1,
+slow-003,slow_response,收到响应变慢通知后，怎样先确认告警发生的时刻？,False,1.0,0.5,0.6309297535714574,2,1.0,2,
+slow-004,slow_response,应用日志里怎么筛出响应时间长和慢查询记录？,False,1.0,1.0,1.0,1,1.0,1,
+slow-005,slow_response,数据库慢查询和系统资源分别该查哪些日志主题？,False,1.0,1.0,1.0,1,1.0,1,
+slow-006,slow_response,慢查询很多、连接池快满，哪类原因最符合？,False,1.0,1.0,1.0,1,1.0,1,
+slow-007,slow_response,调用第三方接口后一直等，日志还有网络超时，优先怀疑什么？,False,1.0,1.0,1.0,1,1.0,1,
+slow-008,slow_response,CPU 高、慢在特定代码路径且外部依赖正常，更像程序问题吗？,False,1.0,1.0,1.0,1,1.0,1,
+slow-009,slow_response,数据库慢查询导致的卡顿，眼下能先怎么优化？,False,1.0,1.0,1.0,1,1.0,1,
+slow-010,slow_response,事故过去后，怎么通过压测和监控避免响应慢再次发生？,False,1.0,1.0,1.0,1,1.0,1,
+slow-011,slow_response,接口怎么突然这么卡？,False,0.0,0.0,0.0,,0.0,,
+slow-012,slow_response,响应慢先看啥？,False,1.0,0.3333333333333333,0.5,3,1.0,3,
+neg-001,negative,广州明天下午会下雨吗？,True,,,,,,,1.0
+neg-002,negative,红烧肉怎么做才能软烂不油腻？,True,,,,,,,1.0
+neg-003,negative,坐高铁从北京到上海需要多长时间？,True,,,,,,,1.0
+neg-004,negative,Python里怎样高效去掉列表中的重复元素？,True,,,,,,,1.0
+neg-005,negative,最近一周沪深300指数走势如何？,True,,,,,,,1.0
+neg-006,negative,高血压患者每天应该吃多少降压药？,True,,,,,,,1.0
+neg-007,negative,劳动合同里约定违约金有效吗？,True,,,,,,,1.0
+neg-008,negative,昨晚NBA比赛最终比分是多少？,True,,,,,,,1.0
+neg-009,negative,《静夜思》表达了作者怎样的思想感情？,True,,,,,,,1.0
+neg-010,negative,阴天拍人像时怎样设置相机白平衡？,True,,,,,,,1.0
+neg-011,negative,Kubernetes滚动升级因PodDisruptionBudget的minAvailable配置错误一直卡住，应该怎样调整PDB？,True,,,,,,,1.0
+neg-012,negative,服务的TLS证书已经过期，如何定位证书并完成在线轮换？,True,,,,,,,1.0
+neg-013,negative,Kafka某个消费组lag持续增长并触发消息积压告警，怎样排查消费暂停和分区分配问题？,True,,,,,,,1.0
+neg-014,negative,MySQL出现InnoDB死锁并报Deadlock found，如何读取锁等待信息并定位冲突事务？,True,,,,,,,1.0
+neg-015,negative,Redis Cluster执行槽迁移时卡在MIGRATING状态，怎样恢复集群槽位归属？,True,,,,,,,1.0
+neg-016,negative,CoreDNS返回SERVFAIL，如何检查forward插件和上游DNS可用性？,True,,,,,,,1.0
+neg-017,negative,Linux的nf_conntrack表已满导致新连接被丢弃，应该怎样调优相关内核参数？,True,,,,,,,1.0
+neg-018,negative,服务器NTP时钟偏移超过30秒引发分布式任务调度异常，如何定位并纠正时间漂移？,True,,,,,,,1.0
+neg-019,negative,从Harbor拉取镜像时报401 Unauthorized，如何排查robot账号权限和镜像仓库认证？,True,,,,,,,1.0
+neg-020,negative,Filebeat的registry文件损坏后重复采集日志，怎样恢复checkpoint并避免重复上报？,True,,,,,,,1.0
