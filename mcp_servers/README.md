@@ -9,10 +9,10 @@
 
 **核心工具：**
 - `get_current_timestamp` - 获取当前时间戳
-- `get_topic_info_by_name` - 查询日志主题
-- `search_log` - 日志搜索
-- `search_service_logs` - 服务日志查询（支持级别筛选）
-- `analyze_log_pattern` - 日志模式分析
+- `get_region_code_by_name` - 查询地区代码
+- `get_topic_info_by_name` - 按名称查询日志主题
+- `search_topic_by_service_name` - 按服务名查询日志主题
+- `search_log` - 按主题和时间范围搜索日志
 
 ### Monitor Server (`monitor_server.py`)
 **监控数据服务** - 端口 8004
@@ -20,9 +20,6 @@
 **核心工具：**
 - `query_cpu_metrics` - CPU 使用率查询
 - `query_memory_metrics` - 内存使用查询
-- `query_process_list` - 进程列表
-- `search_historical_tickets` - 历史工单查询
-- `get_service_info` / `list_all_services` - 服务信息
 
 ## 🚀 快速开始
 
@@ -35,9 +32,9 @@ pip install fastmcp
 
 **方式一：使用 Makefile（推荐）**
 ```bash
-make mcp-start   # 启动所有 MCP 服务
-make mcp-stop    # 停止所有 MCP 服务
-make mcp-status  # 查看服务状态
+make start-cls       # 启动 CLS MCP 服务
+make start-monitor   # 启动 Monitor MCP 服务
+make status-mcp      # 查看 MCP 服务状态
 ```
 
 **方式二：手动启动**
@@ -54,13 +51,12 @@ python mcp_servers/monitor_server.py
 用户: data-sync-service 出现告警，请排查
 
 Agent 自动执行:
-1. list_all_services() → 查看所有服务状态
-2. get_service_info("data-sync-service") → 获取服务详情
-3. query_cpu_metrics("data-sync-service") → CPU 趋势分析
-4. search_service_logs("data-sync-service", level="error") → 错误日志
-5. analyze_log_pattern("data-sync-service") → 日志模式分析
-6. search_historical_tickets(service_name="data-sync-service") → 历史工单
-7. 综合分析 → 生成诊断报告和修复建议
+1. search_topic_by_service_name("data-sync-service") → 查找日志主题
+2. get_current_timestamp() → 获取当前毫秒时间戳
+3. search_log(topic_id, start_time, end_time) → 查询近期日志
+4. query_cpu_metrics("data-sync-service") → CPU 趋势分析
+5. query_memory_metrics("data-sync-service") → 内存趋势分析
+6. 综合分析 → 生成诊断报告和修复建议
 ```
 
 ### 工具参数示例
@@ -76,20 +72,14 @@ query_cpu_metrics(
 
 **搜索错误日志：**
 ```python
-search_service_logs(
-    service_name="data-sync-service",
-    log_level="error",
-    keyword="timeout",
-    limit=100
-)
-```
-
-**搜索历史工单：**
-```python
-search_historical_tickets(
-    service_name="data-sync-service",
-    issue_type="cpu",
-    limit=10
+current = get_current_timestamp()
+start = current - 15 * 60 * 1000
+search_log(
+    topic_id="topic-001",
+    start_time=start,
+    end_time=current,
+    query="level:ERROR",
+    limit=100,
 )
 ```
 

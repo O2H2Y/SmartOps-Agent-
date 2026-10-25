@@ -1,16 +1,21 @@
-# SuperBizAgent
+# SmartOps系统
 
-> 企业级智能对话和运维助手，支持 RAG 知识库问答和 AIOps 智能诊断
+> 基于 RAG 与 Plan-Execute-Replan 的 AIOps / On-call 助手参考实现
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+A local-first AIOps and on-call assistant that combines RAG knowledge search,
+Prometheus alert triage, and Plan-Execute-Replan diagnostics using FastAPI,
+LangGraph, Milvus, and MCP.
+
+[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
 [![LangChain](https://img.shields.io/badge/LangChain-latest-orange.svg)](https://www.langchain.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## ✨ 核心特性
 
 - 🤖 **智能对话** - LangChain 多轮对话 + 流式输出
 - 📚 **RAG 问答** - 向量检索增强，支持文档上传、自动建立向量索引、自动更新知识库
-- 🔧 **AIOps 诊断** - Plan-Execute-Replan 自动故障诊断和根因分析
+- 🔧 **AIOps 诊断** - Plan-Execute-Replan 流程编排与诊断报告生成
 - 🌐 **Web 界面** - 现代化 UI，支持多种对话模式：快速问答/流式对话
 - 🔌 **MCP 集成** - 日志查询和监控数据工具接入
 
@@ -24,7 +29,7 @@
 ## 🚀 快速开始
 
 ### 环境要求
-- Python 3.10+
+- Python 3.11 - 3.13
 - 阿里云 DashScope API Key ([获取地址](https://dashscope.aliyun.com/))
 
 ### 安装和启动
@@ -33,8 +38,8 @@
 
 ```bash
 # 1. 克隆项目
-git clone <repository_url>
-cd super_biz_agent_py
+git clone https://github.com/O2H2Y/SmartOps-Agent-.git
+cd SmartOps-Agent-
 
 # 2. 安装依赖（推荐使用 uv）
 # 方式 1: 使用 uv（推荐，更快）
@@ -46,15 +51,12 @@ uv pip install -e .
 # 方式 2: 使用 pip
 pip install -e .
 
-# 3. 编辑配置文件
-# 首次使用需要编辑 .env 文件，填入你的 DASHSCOPE_API_KEY
-vim .env  # 或使用其他编辑器
+# 3. 创建本地配置文件并填入 DASHSCOPE_API_KEY
+cp .env.example .env
+vim .env
 
 # 4. 一键初始化（启动 Docker + 服务 + 上传文档）
 make init
-
-# 5. 一键启动
-make start
 ```
 
 #### Windows 环境（PowerShell/CMD）
@@ -63,8 +65,8 @@ make start
 
 ```powershell
 # 1. 克隆项目
-git clone <repository_url>
-cd super_biz_agent_py
+git clone https://github.com/O2H2Y/SmartOps-Agent-.git
+cd SmartOps-Agent-
 
 # 2. 创建虚拟环境并安装依赖
 # 方式 1: 使用 uv（推荐，更快）
@@ -81,8 +83,8 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -e .
 
-# 3. 编辑配置文件
-# 使用记事本或其他编辑器打开 .env 文件，填入你的 DASHSCOPE_API_KEY
+# 3. 创建本地配置文件并填入 DASHSCOPE_API_KEY
+Copy-Item .env.example .env
 notepad .env
 
 # 4. 启动 Docker Desktop
@@ -108,7 +110,10 @@ python -m uvicorn app.main:app --host 0.0.0.0 --port 9900
 # 9. 上传文档到向量库（新开一个 PowerShell 窗口）
 # 等待服务启动完成后执行
 timeout /t 5
-python -c "import requests, os, time; [requests.post('http://localhost:9900/api/upload', files={'file': open(f'aiops-docs/{f}', 'rb')}) or time.sleep(1) for f in os.listdir('aiops-docs') if f.endswith('.md')]"
+Get-ChildItem aiops-docs\*.md | ForEach-Object {
+    curl.exe -F "file=@$($_.FullName)" http://localhost:9900/api/upload
+    Start-Sleep -Seconds 1
+}
 ```
 
 **Windows 一键启动脚本**（推荐）
@@ -137,7 +142,7 @@ python -c "import requests, os, time; [requests.post('http://localhost:9900/api/
 | 流式对话 | POST | `/api/chat_stream` | SSE 流式输出 |
 | AIOps 诊断 | POST | `/api/aiops` | 自动故障诊断（流式） |
 | 文件上传 | POST | `/api/upload` | 上传并索引文档 |
-| 健康检查 | GET | `/api/health` | 服务状态检查 |
+| 健康检查 | GET | `/health` | 服务与 Milvus 状态检查 |
 
 ### 使用示例
 
@@ -163,7 +168,7 @@ curl -X POST "http://localhost:9900/api/aiops" \
 ## 📁 项目结构
 
 ```
-super_biz_agent_py/
+SmartOps-Agent-/
 ├── app/                                    # 应用核心
 │   ├── __init__.py                         # 包初始化（自动加载日志配置）
 │   ├── main.py                             # FastAPI 应用入口
@@ -219,11 +224,9 @@ super_biz_agent_py/
 │   ├── monitor_server.py                   # 监控数据服务
 │   └── README.md                           # MCP 服务说明
 ├── aiops-docs/                             # 运维知识库（Markdown 文档）
-├── logs/                                   # 日志目录（Loguru 自动创建）
-│   └── app_YYYY-MM-DD.log                  # 按天轮转的日志文件
-├── uploads/                                # 上传文件临时目录
-├── volumes/                                # Milvus 数据持久化目录
-├── .env                                    # 环境变量配置（需手动创建）
+├── eval/                                   # RAG 检索评测数据、脚本和基线结果
+├── tests/                                  # 自动化测试
+├── .env.example                            # 环境变量模板
 ├── Makefile                                # 项目管理命令（Linux/macOS）
 ├── start-windows.bat                       # Windows 启动脚本
 ├── stop-windows.bat                        # Windows 停止脚本
@@ -236,24 +239,18 @@ super_biz_agent_py/
 
 ## ⚙️ 配置说明
 
-通过 `.env` 文件配置：
+复制 `.env.example` 为 `.env`，至少填入你自己的 `DASHSCOPE_API_KEY`：
 
 ```bash
-# 阿里云LLM DashScope 配置（必填）
-# 秘钥管理： https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29597918.J_SEsSjsNv72yRuRFS2VknO.2.61ac133ccTVQLw&tab=demohouse#/api-key
-DASHSCOPE_API_KEY=your-api-key （配置你自己的秘钥）
-DASHSCOPE_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1  # 不配置则默认会使用新加坡站点
+DASHSCOPE_API_KEY=your-api-key
 DASHSCOPE_MODEL=qwen-max
-
-# Milvus 配置
 MILVUS_HOST=localhost
 MILVUS_PORT=19530
-
-# RAG 配置
 RAG_TOP_K=3
-CHUNK_MAX_SIZE=800
-CHUNK_OVERLAP=100
 ```
+
+`.env` 已被 Git 忽略，不应提交。更多配置项见 [.env.example](.env.example) 和
+[app/config.py](app/config.py)。
 
 ## 🎯 AIOps 智能运维
 
@@ -285,8 +282,18 @@ curl -X POST "http://localhost:9900/api/aiops" \
 1. Planner 制定计划 → 生成 4-6 个诊断步骤
 2. Executor 执行步骤 → 调用 MCP 工具（日志查询、监控数据）
 3. Replanner 评估结果 → 决定继续/调整/生成报告
-4. 输出诊断报告 → 根因分析 + 运维建议
+4. 输出诊断报告 → 诊断结论 + 运维建议
 ```
+
+> 当前 CLS 日志和 CPU/内存监控工具默认返回模拟数据，Prometheus 告警查询使用真实
+> HTTP 请求。诊断报告由 LLM 生成，不应当作经过验证的生产根因结论。
+
+## ⚠️ 使用边界
+
+- 本项目是本地优先的参考实现，不是经过生产验证的监控或告警平台。
+- API 当前没有身份认证，CORS 配置面向本地开发；不要直接暴露到公网。
+- Compose 中的默认 MinIO 凭据仅用于本机开发，公开部署前必须修改。
+- 上传文件仅支持 `.txt` 和 `.md`，单文件最大 10 MB。
 
 ## 📝 开发指南
 
@@ -411,6 +418,5 @@ netstat -ano | findstr :8004  # Monitor MCP
 - [MCP 协议](https://modelcontextprotocol.io/)
 
 ## 📄 许可证
-author： chief
 
-MIT License
+本项目采用 [MIT License](LICENSE)。

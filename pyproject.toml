@@ -1,9 +1,11 @@
 [project]
-name = "super-biz-agent-py"
+name = "smartops-system"
 version = "1.2.1"
-description = "基于 LangChain 的智能业务代理系统 - 支持 RAG 知识库和 AIOps 智能运维"
-authors = [{name = "chief"}]
+description = "SmartOps系统 - 基于 FastAPI、LangGraph、Milvus 和 MCP 的 AIOps / On-call 助手"
+authors = [{name = "O2H2Y"}]
 readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["aiops", "oncall", "rag", "llm", "agent", "langgraph", "milvus", "mcp"]
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "fastapi>=0.109.0",

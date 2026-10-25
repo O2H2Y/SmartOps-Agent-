@@ -48,8 +48,26 @@ poetry.lock
 !.env.example
 .env.local
 
+# Credentials and local data
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account.json
+.streamlit/secrets.toml
+*.sql
+*.db-wal
+*.db-shm
+*.bak
+*.backup
+
 # Local tool settings
 .claude/settings.local.json
+.claude/
+
+# Personal notes
+docs/rag-retrieval-evaluation-interview.md
 
 # Logs
 logs/

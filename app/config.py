@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     )
 
     # 应用配置
-    app_name: str = "SuperBizAgent"
-    app_version: str = "1.0.0"
+    app_name: str = "SmartOps系统"
+    app_version: str = "1.2.1"
     debug: bool = False
     host: str = "0.0.0.0"
     port: int = 9900

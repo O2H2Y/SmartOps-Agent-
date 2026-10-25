@@ -1,4 +1,4 @@
-"""SuperBizAgent Python 版本
+"""SmartOps系统
 
 基于 LangChain 的智能业务代理系统
 """

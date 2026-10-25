@@ -1,4 +1,4 @@
-# SuperBizAgent Python 版本 Makefile
+# SmartOps系统 Makefile
 # 用于自动化项目初始化、Docker 管理和文档向量化
 
 # ============================================================
@@ -28,7 +28,7 @@ NC = \033[0m
 # ============================================================
 help:
 	@echo "$(GREEN)═══════════════════════════════════════════════════════$(NC)"
-	@echo "$(GREEN)  SuperBizAgent Python 版本 - Makefile 命令$(NC)"
+	@echo "$(GREEN)  SmartOps系统 - Makefile 命令$(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════$(NC)"
 	@echo ""
 	@echo "$(CYAN)【一键操作】$(NC)"
@@ -95,7 +95,7 @@ help:
 # ============================================================
 init:
 	@echo "$(GREEN)═══════════════════════════════════════════════════════$(NC)"
-	@echo "$(GREEN)🚀 开始一键初始化 SuperBizAgent...$(NC)"
+	@echo "$(GREEN)🚀 开始一键初始化 SmartOps系统...$(NC)"
 	@echo "$(GREEN)═══════════════════════════════════════════════════════$(NC)"
 	@echo ""
 	@echo "$(YELLOW)步骤 1/4: 启动 Docker 容器（Milvus 向量数据库）$(NC)"
@@ -118,7 +118,7 @@ init:
 	@echo "   API 服务: $(SERVER_URL)"
 	@echo "   API 文档: $(SERVER_URL)/docs"
 	@echo "   Attu (Milvus Web UI): http://localhost:8000"
-	@echo "   MinIO: http://localhost:9001 (admin/minioadmin)"
+	@echo "   MinIO: http://localhost:9001 (credentials from .env)"
 	@echo ""
 	@echo "$(YELLOW)💡 提示: 服务正在后台运行$(NC)"
 	@echo "   查看日志: $(YELLOW)tail -f server.log$(NC)"
@@ -153,7 +153,7 @@ up:
 			echo "$(GREEN)🌐 服务访问地址:$(NC)"; \
 			echo "   Milvus: localhost:19530"; \
 			echo "   Attu (Web UI): http://localhost:8000"; \
-			echo "   MinIO: http://localhost:9001 (admin/minioadmin)"; \
+			echo "   MinIO: http://localhost:9001 (credentials from .env)"; \
 		else \
 			echo "$(RED)❌ 容器启动失败$(NC)"; \
 			exit 1; \

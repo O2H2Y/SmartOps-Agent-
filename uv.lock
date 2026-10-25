@@ -3046,7 +3046,7 @@ wheels = [
 ]
 
 [[package]]
-name = "super-biz-agent-py"
+name = "smartops-system"
 version = "1.2.1"
 source = { editable = "." }
 dependencies = [

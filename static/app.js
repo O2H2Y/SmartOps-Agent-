@@ -1,5 +1,5 @@
-// SuperBizAgent 前端应用
-class SuperBizAgentApp {
+// SmartOps 前端应用
+class SmartOpsApp {
     constructor() {
         this.apiBaseUrl = 'http://localhost:19900/api';
         this.currentMode = 'quick'; // 'quick' 或 'stream'
@@ -616,7 +616,7 @@ class SuperBizAgentApp {
         // 更新输入框状态
         if (this.messageInput) {
             this.messageInput.disabled = this.isStreaming;
-            this.messageInput.placeholder = '问问 SmartOps Agent系统';
+            this.messageInput.placeholder = '问问 SmartOps系统';
         }
     }
 
@@ -1687,5 +1687,5 @@ document.head.appendChild(style);
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
-    new SuperBizAgentApp();
+    new SmartOpsApp();
 });

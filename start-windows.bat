@@ -3,7 +3,7 @@ chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 echo ====================================
-echo 启动 SuperBizAgent 服务
+echo 启动 SmartOps系统 服务
 echo ====================================
 echo.
 
@@ -134,7 +134,7 @@ echo.
 
 REM 启动 FastAPI 服务
 echo [7/8] 启动 FastAPI 服务...
-start "SuperBizAgent API" %PYTHON_CMD% -m uvicorn app.main:app --host 0.0.0.0 --port 9900
+start "SmartOps API" %PYTHON_CMD% -m uvicorn app.main:app --host 0.0.0.0 --port 9900
 echo [信息] 等待服务启动（15秒）...
 timeout /t 15 /nobreak >nul
 echo.
