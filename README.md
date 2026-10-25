@@ -6,7 +6,7 @@ A local-first AIOps and on-call assistant that combines RAG knowledge search,
 Prometheus alert triage, and Plan-Execute-Replan diagnostics using FastAPI,
 LangGraph, Milvus, and MCP.
 
-[![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.11--3.13-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
 [![LangChain](https://img.shields.io/badge/LangChain-latest-orange.svg)](https://www.langchain.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -30,6 +30,7 @@ LangGraph, Milvus, and MCP.
 
 ### 环境要求
 - Python 3.11 - 3.13
+- Docker Desktop 或 Docker Engine + Docker Compose
 - 阿里云 DashScope API Key ([获取地址](https://dashscope.aliyun.com/))
 
 ### 安装和启动
@@ -105,7 +106,7 @@ python mcp_servers/monitor_server.py
 
 # 8. 启动 FastAPI 主服务（新开一个 PowerShell 窗口）
 # 注意：日志会自动输出到 logs\app_YYYY-MM-DD.log
-python -m uvicorn app.main:app --host 0.0.0.0 --port 9900
+python -m uvicorn app.main:app --host 127.0.0.1 --port 9900
 
 # 9. 上传文档到向量库（新开一个 PowerShell 窗口）
 # 等待服务启动完成后执行

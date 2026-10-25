@@ -97,22 +97,33 @@ async def diagnose_stream(request: AIOpsRequest):
 
     **前端使用示例：**
     ```javascript
-    const eventSource = new EventSource('/api/aiops');
+    const response = await fetch('/api/aiops', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: 'session-123' }),
+    });
 
-    eventSource.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
 
-      if (data.type === 'plan') {
-        console.log('诊断计划:', data.plan);
-      } else if (data.type === 'step_complete') {
-        console.log('步骤完成:', data.current_step);
-      } else if (data.type === 'report') {
-        console.log('最终报告:', data.report);
-      } else if (data.type === 'complete') {
-        console.log('诊断完成');
-        eventSource.close();
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const messages = buffer.split('\n\n');
+      buffer = messages.pop();
+
+      for (const message of messages) {
+        const dataLine = message.split('\n').find((line) => line.startsWith('data:'));
+        if (!dataLine) continue;
+
+        const data = JSON.parse(dataLine.slice(5).trim());
+        if (data.type === 'report') console.log('最终报告:', data.report);
+        if (data.type === 'complete') console.log('诊断完成');
       }
-    };
+    }
     ```
 
     Args:

@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     app_name: str = "SmartOps系统"
     app_version: str = "1.2.1"
     debug: bool = False
-    host: str = "0.0.0.0"
+    host: str = "127.0.0.1"
     port: int = 9900
 
     # DashScope 配置

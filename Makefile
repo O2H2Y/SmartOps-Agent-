@@ -422,12 +422,12 @@ check:
 # 开发模式运行（前台，热重载）
 dev:
 	@echo "$(YELLOW)🔧 启动开发服务器（热重载）...$(NC)"
-	.venv/bin/python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 9900
+	.venv/bin/python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 9900
 
 # 生产模式运行（前台）
 run:
 	@echo "$(YELLOW)🏭 启动生产服务器...$(NC)"
-	.venv/bin/python -m uvicorn app.main:app --host 0.0.0.0 --port 9900
+	.venv/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 9900
 
 # ============================================================
 # 文档管理
